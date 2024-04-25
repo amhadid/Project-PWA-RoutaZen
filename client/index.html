@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    
+    <title>Web Apps Routing</title>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="./Assets/img/logo-undip.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Fav Icons -->
+    <link href="./Assets/img/logo-undip.png" rel="icon">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="./style/index.css" />
+
+    <!-- Leaflet Utama -->
+    <link rel="stylesheet" href="./leaflet/leaflet.css" />
+    <script src="./leaflet/leaflet.js"></script>
+
+    <!-- Location User -->
+    <link rel="stylesheet" href="./leaflet/controlLocate/L.Control.Locate.min.css" />
+    <script src="./leaflet/controlLocate/L.Control.Locate.min.js" charset="utf-8"></script>
+
+    <!-- Scale -->
+    <link rel="stylesheet" href="./leaflet/leaflet-betterscale-master/L.Control.BetterScale.css" />
+    <script src="./leaflet/leaflet-betterscale-master/L.Control.BetterScale.js"></script>
+
+    <!-- Reset View -->
+    <link rel="stylesheet" href="./leaflet/ResetView/L.Control.ResetView.min.css" />
+    <script type="text/javascript" src="./leaflet/ResetView/L.Control.ResetView.min.js"></script>
+
+    <!-- Legenda -->
+    <link rel="stylesheet" href="./leaflet/leaflet legend/leaflet.legend.css" />
+    <script type="text/javascript" src="./leaflet/leaflet legend/leaflet.legend.js"></script>
+
+    <!-- Routing Machine -->
+    <link rel="stylesheet" href="./leaflet/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="./leaflet/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js" ></script>
+    <script src="./leaflet/leaflet-routing-machine-3.2.12/examples/config.js" ></script>
+
+    <!-- Slide Menu -->
+    <link rel="stylesheet" href="./leaflet/L.Control.SlideMenu.css" />
+    <script type="text/javascript" src="./leaflet/L.Control.SlideMenu.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    
+</head>
+
+    <body>
+
+        <div id="map" class="map"></div>
+
+        <!-- Pop-up -->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <h3>Selamat datang di WebApp Guardian Angel</h3>
+                <p>Selamatkan Dirimu dari Area Rawan Kecelakaan. Yuk Pilih Tujuan Destinasi Kamu!</p>
+            </div>
+            <div class="modal-title text-center">
+                <p class="modal-title justify-text"> Panduan lengkap App <a href="about-app.html" target="_blank"> Klik Disini </a></p>
+            </div>
+        </div>
+
+        <!-- Layer -->
+        <script src="./Assets/Data/Data-kecelakaan-2021.js" ></script>
+        <script src="./Assets/Data/Data-kecelakaan-2022.js" ></script>
+        <script src="./Assets/Data/Data-kecelakaan-2023.js" ></script>
+        <script src="./Assets/Data/area-rawan-tinggi.js" ></script>
+
+        <!-- Connect to App.js -->
+        <script src="./js/App.js" ></script>
+
+        <!-- Real-time Access -->
+        <script src="./js/Access_realtime.js" ></script>
+           
+    </body>
+
+</html>

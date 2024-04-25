@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@turf/turf": "^6.5.0",
+    "leaflet": "^1.9.4",
+    "leaflet-dialog": "^1.0.5",
+    "leaflet-routing-machine": "^3.2.12"
+  }
+}
