@@ -18277,7 +18277,7 @@ module.exports = L.Routing = {
 			],
 			draggableWaypoints: true,
 			routeWhileDragging: false,
-			addWaypoints: true,
+			addWaypoints: false,
 			reverseWaypoints: false,
 			addButtonClassName: '',
 			language: 'en',
