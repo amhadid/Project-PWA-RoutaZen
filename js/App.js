@@ -58,6 +58,22 @@ L.control.locate().addTo(map);
 
 //--Skala---------------------------------------------------------------------------------------------------------------
 L.control.betterscale().addTo(map);
+
+//--Geocoder------------------------------------------------------------------------------------------------------------
+var geocoder = L.Control.geocoder({
+    defaultMarkGeocode: false
+  })
+    .on('markgeocode', function(e) {
+      var bbox = e.geocode.bbox;
+      var poly = L.polygon([
+        bbox.getSouthEast(),
+        bbox.getNorthEast(),
+        bbox.getNorthWest(),
+        bbox.getSouthWest()
+      ]).addTo(map);
+      map.fitBounds(poly.getBounds());
+    })
+    .addTo(map);
          
 //--Add GeoJSON---------------------------------------------------------------------------------------------------------
 // Data Kejadian Kecelakaan Tahun 2021
@@ -234,6 +250,30 @@ const control = L.Routing.control({
     router: L.Routing.mapbox('pk.eyJ1IjoiYW1oYWRpZCIsImEiOiJjbHRwZXE0NzQwcm9vMnFudzRwZGIzZXcxIn0.7saScDB-61QpiWGcrccOjg'),
     geocoder: L.Control.Geocoder.nominatim()
 }).addTo(map);
+
+// Tambahkan event listener pada peta untuk menangkap klik pengguna
+map.on('click', function(event) {
+    const destinationLatLng = event.latlng;
+
+    // Tampilkan dialog konfirmasi
+    if (confirm('Apakah Anda yakin ingin pergi ke lokasi ini?')) {
+        // Dapatkan lokasi pengguna saat ini menggunakan geolocation (jika tersedia)
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const userLatLng = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            // Setel titik awal dan titik akhir pada kontrol rute
+            control.setWaypoints([userLatLng, destinationLatLng]);
+
+            // Lakukan perutean
+            control.route();
+        }, function(error) {
+            console.error('Tidak dapat mengakses lokasi pengguna:', error);
+        });
+    }
+});
 
 // Tambahkan event listener untuk menampilkan pop-up pada hasil rute
 control.on('routeselected', function(e) {
