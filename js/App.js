@@ -229,41 +229,40 @@ const legend = L.control.Legend({
 ]}).addTo(map);
 
 //--Algoritma Routing--------------------------------------------------------------------------------------------------------
-L.Routing.control({
-    waypointNameFallback: function(latLng) {
-        function zeroPad(n) {
-            n = Math.round(n);
-            return n < 10 ? '0' + n : n;
-        }
-        function sexagesimal(p, pos, neg) {
-            var n = Math.abs(p),
-                degs = Math.floor(n),
-                mins = (n - degs) * 60,
-                secs = (mins - Math.floor(mins)) * 60,
-                frac = Math.round((secs - Math.floor(secs)) * 100);
-            return (n >= 0 ? pos : neg) + degs + '°' +
-                zeroPad(mins) + '\'' +
-                zeroPad(secs) + '.' + zeroPad(frac) + '"';
-        }
-
-        return sexagesimal(latLng.lat, 'N', 'S') + ' ' + sexagesimal(latLng.lng, 'E', 'W');
-    },
+// Inisialisasi Routing control
+const control = L.Routing.control({
     router: L.Routing.mapbox('pk.eyJ1IjoiYW1oYWRpZCIsImEiOiJjbHRwZXE0NzQwcm9vMnFudzRwZGIzZXcxIn0.7saScDB-61QpiWGcrccOjg'),
-    routeWhileDragging: true,
     geocoder: L.Control.Geocoder.nominatim()
 }).addTo(map);
 
+// Tambahkan event listener untuk menampilkan pop-up pada hasil rute
+control.on('routeselected', function(e) {
+    const route = e.route;
+    const start = route.inputWaypoints[0];
+    const end = route.inputWaypoints[1];
+
+    const startPopup = L.popup()
+        .setLatLng(start.latLng)
+        .setContent("Titik Awal: " + start.name)
+        .openOn(map);
+
+    const endPopup = L.popup()
+        .setLatLng(end.latLng)
+        .setContent("Titik Akhir: " + end.name)
+        .openOn(map);
+});
+
 //--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
-// Define the function to check user location
+// Membuat fungsi untuk mencari lokasi user terkini
 function checkLocation() {
     map.locate({setView: true});
 }
 
-// Define the function to handle location found
+// menentukan fungsi untuk menangani lokasi yang ditemukan
 function onLocationFound(e) {
     var userLocation = e.latlng;
-    
-    // Check if user location is within the boundaries of any feature in the GeoJSON layer
+
+    // Melakukan pengecekan jika lokasi user berada di area rawan
     var userWithinArea = false;
     area_rawan.eachLayer(function(layer) {
         if (layer.getBounds().contains(userLocation)) {
@@ -271,25 +270,29 @@ function onLocationFound(e) {
         }
     });
 
-    // If user is within any feature in the GeoJSON layer, display notification
-    if (userWithinArea && Notification.permission === "granted") {
-        new Notification("Anda berada dalam Area Rawan Kecelakaan");
-    } else if (userWithinArea && Notification.permission !== "denied") {
-        Notification.requestPermission().then(function(permission) {
-            if (permission === "granted") {
-                new Notification("Anda berada dalam Area Rawan Kecelakaan");
-            }
-        });
+    // melakukan pengecekan apakah browser dapat menampilkan notifikasi
+    if (!("Notification" in window)) {
+        console.error("This browser does not support desktop notification");
+    } else {
+        // jika user mendekati lokasi, maka notifikasi akan aktif
+        if (userWithinArea && Notification.permission === "granted") {
+            new Notification("Anda berada dalam Area Rawan Kecelakaan");
+        } else if (userWithinArea && Notification.permission !== "denied") {
+            Notification.requestPermission().then(function(permission) {
+                if (permission === "granted") {
+                    new Notification("Anda berada dalam Area Rawan Kecelakaan");
+                }
+            });
+        }
     }
 }
 
-// Listen for location found event
 map.on('locationfound', onLocationFound);
 
-// Call the checkLocation function once to initiate
+// melakukan pengecekan fungsi lokasi yang telah di inisiasi
 checkLocation();
 
-// Call the checkLocation function every 15 seconds
+// melakukan pengecekan lokasi setiap 15 detik
 setInterval(checkLocation, 15000);
 
 //--Kontak Menu--------------------------------------------------------------------------------------------------------------------------------
@@ -317,7 +320,6 @@ const slideMenu = L.control
         slideMenu.setContents(left + contents);
 
 // Connect Server
-// Area rawan
 fetch('http://localhost:4000/data_kecelakaan')
     .then(response => response.json())
     .then(data => console.log(data))
