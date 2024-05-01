@@ -11,6 +11,20 @@ body {
     height: 100%;
 }
 
+/* Refresh button */
+#refresh-button {
+  position: fixed;
+  bottom: 30px;
+  left: 10px;
+  z-index: 1000;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
 /* Style untuk pop-up */
 .popup {
     position: fixed;
