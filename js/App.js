@@ -328,11 +328,7 @@ function onLocationFound(e) {
 
     // Periksa apakah pengguna berada dalam geofence
     if (userWithinArea) {
-        // Lakukan tindakan karena berada dalam geofence, misalnya, memperbarui UI, mengirim data ke server, dll.
-        // Anda dapat menambahkan logika Anda di sini.
     } else {
-        // Lakukan tindakan karena berada di luar geofence
-        // Anda dapat menambahkan logika Anda di sini.
     }
 }
 
