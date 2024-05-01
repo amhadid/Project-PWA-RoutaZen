@@ -293,16 +293,16 @@ control.on('routeselected', function(e) {
 });
 
 //--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
-// Membuat fungsi untuk mencari lokasi user terkini
+// Tentukan fungsi untuk memeriksa lokasi pengguna
 function checkLocation() {
     map.locate({setView: true});
 }
 
-// menentukan fungsi untuk menangani lokasi yang ditemukan
+// Tentukan fungsi untuk menangani lokasi yang ditemukan
 function onLocationFound(e) {
     var userLocation = e.latlng;
 
-    // Melakukan pengecekan jika lokasi user berada di area rawan
+    // Periksa apakah lokasi pengguna berada dalam batas-batas fitur apa pun dalam lapisan GeoJSON
     var userWithinArea = false;
     area_rawan.eachLayer(function(layer) {
         if (layer.getBounds().contains(userLocation)) {
@@ -310,29 +310,52 @@ function onLocationFound(e) {
         }
     });
 
-    // melakukan pengecekan apakah browser dapat menampilkan notifikasi
+    // Periksa apakah browser mendukung notifikasi
     if (!("Notification" in window)) {
-        console.error("This browser does not support desktop notification");
+        console.error("Browser ini tidak mendukung notifikasi desktop");
     } else {
-        // jika user mendekati lokasi, maka notifikasi akan aktif
+        // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
         if (userWithinArea && Notification.permission === "granted") {
-            new Notification("Anda berada dalam Area Rawan Kecelakaan");
+            showNotification("Anda berada dalam Area Rawan Kecelakaan");
         } else if (userWithinArea && Notification.permission !== "denied") {
             Notification.requestPermission().then(function(permission) {
                 if (permission === "granted") {
-                    new Notification("Anda berada dalam Area Rawan Kecelakaan");
+                    showNotification("Anda berada dalam Area Rawan Kecelakaan");
                 }
             });
         }
     }
+
+    // Periksa apakah pengguna berada dalam geofence
+    if (userWithinArea) {
+        // Lakukan tindakan karena berada dalam geofence, misalnya, memperbarui UI, mengirim data ke server, dll.
+        // Anda dapat menambahkan logika Anda di sini.
+    } else {
+        // Lakukan tindakan karena berada di luar geofence
+        // Anda dapat menambahkan logika Anda di sini.
+    }
 }
 
+// Fungsi untuk menampilkan notifikasi
+function showNotification(message) {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification('Notifikasi', {
+                body: message
+            });
+        });
+    } else {
+        console.error('Service Worker tidak didukung pada browser ini');
+    }
+}
+
+// Dengarkan acara lokasi ditemukan
 map.on('locationfound', onLocationFound);
 
-// melakukan pengecekan fungsi lokasi yang telah di inisiasi
+// Panggil fungsi checkLocation sekali untuk memulai
 checkLocation();
 
-// melakukan pengecekan lokasi setiap 15 detik
+// Panggil fungsi checkLocation setiap 15 detik
 setInterval(checkLocation, 15000);
 
 //--Kontak Menu--------------------------------------------------------------------------------------------------------------------------------
