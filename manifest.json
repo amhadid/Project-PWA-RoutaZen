@@ -1,5 +1,5 @@
 {
-    "name": "WebApps Guardian Angel",
+    "name": "Web App RoutaZen",
     "short_name": "PWA",
     "description": "Aplikasi Deteksi Rawan Kecelakaan",
     "icons": [
@@ -9,7 +9,7 @@
         "type": "png"
       },
       {
-        "src": "Assets/img/logo-undip.png",
+        "src": "Assets/img/logo-app.png",
         "sizes": "192x192",
         "type":"png"
       },
