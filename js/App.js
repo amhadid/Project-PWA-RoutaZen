@@ -325,11 +325,6 @@ function onLocationFound(e) {
             });
         }
     }
-
-    // Periksa apakah pengguna berada dalam geofence
-    if (userWithinArea) {
-    } else {
-    }
 }
 
 // Fungsi untuk menampilkan notifikasi
