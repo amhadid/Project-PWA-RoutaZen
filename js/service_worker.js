@@ -43,9 +43,8 @@ self.addEventListener('fetch', function(event) {
           return response;
         }
         return fetch(event.request);
-      }
-    )
-  );
+      })
+    );
 });
 
 self.addEventListener('activate', function(event) {
@@ -63,4 +62,9 @@ self.addEventListener('activate', function(event) {
       );
     })
   );
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  // Add your custom logic for notification click here, e.g., redirecting to a specific page.
 });
