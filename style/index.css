@@ -2,6 +2,8 @@
 body {
     margin: 0;
     padding: 0;
+    color: #000; /* Warna teks utama */
+    background-color: #fff; /* Warna latar belakang utama */
 }
 
 /* Style Map */
@@ -83,4 +85,3 @@ body {
   color: #192A56;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
