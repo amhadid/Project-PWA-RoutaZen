@@ -19,7 +19,7 @@ const pool = new Pool({
 });
 
 // Data area rawan kecelakaan, kejadian kecelakaan tahun 2021, 2022, dan 2023
-app.get('/data_kecelakaan', async (req, res) => {
+app.get('/api/user', async (req, res) => {
     try {
         const client = await pool.connect();
 
