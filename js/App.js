@@ -293,6 +293,13 @@ control.on('routeselected', function(e) {
 });
 
 //--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
+// Tentukan area geofence
+var area_geofence = L.polygon([
+    [-7.0612119578411265, 110.4458760085422],
+    [-7.061105483211137, 110.44737804543814],
+    [-7.062404472022438, 110.44709909572892],
+    [-7.062212818164957, 110.44604766990172]
+]).addTo(map);
 // Tentukan fungsi untuk memeriksa lokasi pengguna
 function checkLocation() {
     map.locate({setView: true});
@@ -304,7 +311,7 @@ function onLocationFound(e) {
 
     // Periksa apakah lokasi pengguna berada dalam batas-batas fitur apa pun dalam lapisan GeoJSON
     var userWithinArea = false;
-    area_rawan.eachLayer(function(layer) {
+    area_geofence.eachLayer(function(layer) {
         if (layer.getBounds().contains(userLocation)) {
             userWithinArea = true;
         }
