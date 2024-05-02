@@ -374,7 +374,7 @@ const slideMenu = L.control
         slideMenu.setContents(left + contents);
 
 // Connect Server
-fetch('http://localhost:4000/data_kecelakaan')
+fetch('http://localhost:4000/api/user')
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error));
