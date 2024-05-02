@@ -6,72 +6,81 @@
     {
       "src": "Assets/img/contact.png",
       "sizes": "144x144",
-      "type": "png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/logo-app.png",
-      "sizes": "512x512",
-      "type":"png"
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/crash-marker.png",
       "sizes": "144x144",
-      "type": "png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/crash-marker-blue.png",
       "sizes": "144x144",
-      "type": "png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/crash-marker-yellow.png",
       "sizes": "144x144",
-      "type": "png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/user-icon.png",
       "sizes": "144x144",
-      "type": "png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/about-app/information.png",
       "sizes": "144x144",
-      "type": "png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/about-app/layercontrol.jpg",
-      "sizes": "144x144",
-      "type": "jpg"
+      "sizes": "192x192",
+      "type": "image/jpeg"
     },
     {
       "src": "Assets/img/about-app/legenda.jpg",
-      "sizes": "144x144",
-      "type": "jpg"
+      "sizes": "192x192",
+      "type": "image/jpeg"
     },
     {
       "src": "Assets/img/about-app/Lokasi.jpg",
-      "sizes": "144x144",
-      "type": "jpg"
+      "sizes": "192x192",
+      "type": "image/jpeg"
     },
     {
       "src": "Assets/img/about-app/notification.png",
       "sizes": "144x144",
-      "type": "png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/about-app/Resetview.jpg",
-      "sizes": "144x144",
-      "type": "jpg"
+      "sizes": "192x192",
+      "type": "image/jpeg"
     },
     {
       "src": "Assets/img/about-app/routing.svg",
       "sizes": "144x144",
-      "type": "svg"
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
       "src": "Assets/img/about-app/Zoom.jpg",
-      "sizes": "144x144",
-      "type": "jpg"
+      "sizes": "192x192",
+      "type": "image/jpeg"
     }
   ],
   "start_url": "index.html",
