@@ -293,39 +293,61 @@ control.on('routeselected', function(e) {
 });
 
 //--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
-// Definisikan polygon
-var polygon = L.polygon([
-    [-7.0612119578411265, 110.4458760085422],
-    [-7.061105483211137, 110.44737804543814],
-    [-7.062404472022438, 110.44709909572892],
-    [-7.062212818164957, 110.44604766990172]
-]).addTo(map);
+// Tentukan fungsi untuk memeriksa lokasi pengguna
+function checkLocation() {
+    map.locate({setView: true});
+}
+
+// Tentukan fungsi untuk menangani lokasi yang ditemukan
+function onLocationFound(e) {
+    var userLocation = e.latlng;
+
+    // Periksa apakah lokasi pengguna berada dalam batas-batas fitur apa pun dalam lapisan GeoJSON
+    var userWithinArea = false;
+    area_rawan.eachLayer(function(layer) {
+        if (layer.getBounds().contains(userLocation)) {
+            userWithinArea = true;
+        }
+    });
+
+    // Periksa apakah browser mendukung notifikasi
+    if (!("Notification" in window)) {
+        console.error("Browser ini tidak mendukung notifikasi desktop");
+    } else {
+        // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
+        if (userWithinArea && Notification.permission === "granted") {
+            showNotification("Anda berada dalam Area Rawan Kecelakaan");
+        } else if (userWithinArea && Notification.permission !== "denied") {
+            Notification.requestPermission().then(function(permission) {
+                if (permission === "granted") {
+                    showNotification("Anda berada dalam Area Rawan Kecelakaan");
+                }
+            });
+        }
+    }
+}
 
 // Fungsi untuk menampilkan notifikasi
-function showNotification() {
-    if ('Notification' in window) {
-      Notification.requestPermission().then(function (result) {
-        if (result === 'granted') {
-          new Notification('Anda telah memasuki area yang ditentukan!');
-        } else {
-          console.log('Izin untuk menampilkan notifikasi tidak diberikan.');
-        }
-      });
+function showNotification(message) {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification('Notifikasi', {
+                body: message
+            });
+        });
     } else {
-      console.log('Notifikasi tidak didukung di browser ini.');
+        console.error('Service Worker tidak didukung pada browser ini');
     }
 }
 
-// Fungsi untuk memeriksa apakah titik berada di dalam polygon dan menampilkan notifikasi
-function checkGeofence(e) {
-    var latlng = e.latlng;
-    if (polygon.getBounds().contains(latlng)) {
-      showNotification();
-    }
-}
+// Dengarkan acara lokasi ditemukan
+map.on('locationfound', onLocationFound);
 
-// Event listener ketika pengguna mengklik peta
-map.on('click', checkGeofence);
+// Panggil fungsi checkLocation sekali untuk memulai
+checkLocation();
+
+// Panggil fungsi checkLocation setiap 15 detik
+setInterval(checkLocation, 15000);
 
 //--Kontak Menu--------------------------------------------------------------------------------------------------------------------------------
 const left = '<div class="header"><img src="./Assets/img/notebook-of-contacts.png" alt="Image" style="width: 15px; height: 13px;"><b> Kontak</b></div>';
