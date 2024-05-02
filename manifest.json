@@ -5,72 +5,72 @@
   "icons": [
     {
       "src": "Assets/img/contact.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "png"
     },
     {
       "src": "Assets/img/logo-app.png",
-      "sizes": "192x192",
+      "sizes": "512x512",
       "type":"png"
     },
     {
       "src": "Assets/img/crash-marker.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "png"
     },
     {
       "src": "Assets/img/crash-marker-blue.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "png"
     },
     {
       "src": "Assets/img/crash-marker-yellow.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "png"
     },
     {
       "src": "Assets/img/user-icon.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "png"
     },
     {
       "src": "Assets/img/about-app/information.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "png"
     },
     {
       "src": "Assets/img/about-app/layercontrol.jpg",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "jpg"
     },
     {
       "src": "Assets/img/about-app/legenda.jpg",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "jpg"
     },
     {
       "src": "Assets/img/about-app/Lokasi.jpg",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "jpg"
     },
     {
       "src": "Assets/img/about-app/notification.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "png"
     },
     {
       "src": "Assets/img/about-app/Resetview.jpg",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "jpg"
     },
     {
       "src": "Assets/img/about-app/routing.svg",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "svg"
     },
     {
       "src": "Assets/img/about-app/Zoom.jpg",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "jpg"
     }
   ],
