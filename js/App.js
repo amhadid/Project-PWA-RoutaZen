@@ -329,15 +329,9 @@ function onLocationFound(e) {
 
 // Fungsi untuk menampilkan notifikasi
 function showNotification(message) {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.ready.then(function(registration) {
-            registration.showNotification('Notifikasi', {
-                body: message
-            });
-        });
-    } else {
-        console.error('Service Worker tidak didukung pada browser ini');
-    }
+    new Notification('Notifikasi', {
+        body: message
+    });
 }
 
 // Dengarkan acara lokasi ditemukan
