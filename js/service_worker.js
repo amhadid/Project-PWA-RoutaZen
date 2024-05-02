@@ -42,7 +42,26 @@ self.addEventListener('fetch', function(event) {
         if (response) {
           return response;
         }
-        return fetch(event.request);
+        // Clone the request to ensure it's safe to read when responding.
+        const fetchRequest = event.request.clone();
+
+        return fetch(fetchRequest)
+          .then(function(response) {
+            // Check if we received a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+
+            // Clone the response to ensure it's safe to read when caching.
+            const responseToCache = response.clone();
+
+            caches.open(CACHE_NAME)
+              .then(function(cache) {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
+          });
       })
     );
 });
@@ -66,5 +85,4 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
   event.notification.close();
-  // Add your custom logic for notification click here, e.g., redirecting to a specific page.
 });
