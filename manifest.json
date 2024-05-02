@@ -1,109 +1,109 @@
 {
-    "name": "Web App RoutaZen",
-    "short_name": "PWA",
-    "description": "Aplikasi Deteksi Rawan Kecelakaan",
-    "icons": [
-      {
-        "src": "Assets/img/contact.png",
-        "sizes": "192x192",
-        "type": "png"
-      },
-      {
-        "src": "Assets/img/logo-app.png",
-        "sizes": "192x192",
-        "type":"png"
-      },
-      {
-        "src": "Assets/img/crash-marker.png",
-        "sizes": "192x192",
-        "type": "png"
-      },
-      {
-        "src": "Assets/img/crash-marker-blue.png",
-        "sizes": "192x192",
-        "type": "png"
-      },
-      {
-        "src": "Assets/img/crash-marker-yellow.png",
-        "sizes": "192x192",
-        "type": "png"
-      },
-      {
-        "src": "Assets/img/user-icon.png",
-        "sizes": "192x192",
-        "type": "png"
-      },
-      {
-        "src": "Assets/img/about-app/information.png",
-        "sizes": "192x192",
-        "type": "png"
-      },
-      {
-        "src": "Assets/img/about-app/layercontrol.jpg",
-        "sizes": "192x192",
-        "type": "jpg"
-      },
-      {
-        "src": "Assets/img/about-app/legenda.jpg",
-        "sizes": "192x192",
-        "type": "jpg"
-      },
-      {
-        "src": "Assets/img/about-app/Lokasi.jpg",
-        "sizes": "192x192",
-        "type": "jpg"
-      },
-      {
-        "src": "Assets/img/about-app/notification.png",
-        "sizes": "192x192",
-        "type": "png"
-      },
-      {
-        "src": "Assets/img/about-app/Resetview.jpg",
-        "sizes": "192x192",
-        "type": "jpg"
-      },
-      {
-        "src": "Assets/img/about-app/routing.svg",
-        "sizes": "192x192",
-        "type": "svg"
-      },
-      {
-        "src": "Assets/img/about-app/Zoom.jpg",
-        "sizes": "192x192",
-        "type": "jpg"
-      }
-    ],
-    "start_url": "index.html",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#ffffff",
-    "orientation": "any",
-    "scope": "/",
-    "serviceworker": {
-      "src": "js/service_worker.js",
-      "scope": "/"
+  "name": "Web App RoutaZen",
+  "short_name": "PWA",
+  "description": "Aplikasi Deteksi Rawan Kecelakaan",
+  "icons": [
+    {
+      "src": "Assets/img/contact.png",
+      "sizes": "192x192",
+      "type": "png"
     },
-    "offline_directs": [
-      "index.html",
-      "about-app.html",
-      "style/index.css",
-      "leaflet/leaflet.css",
-      "leaflet/leaflet.js",
-      "leaflet/controlLocate/L.Control.Locate.min.css",
-      "leaflet/controlLocate/L.Control.Locate.min.js",
-      "leaflet/leaflet-betterscale-master/L.Control.BetterScale.css",
-      "leaflet/leaflet-betterscale-master/L.Control.BetterScale.js",
-      "leaflet/ResetView/L.Control.ResetView.min.css",
-      "leaflet/ResetView/L.Control.ResetView.min.js",
-      "leaflet/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css",
-      "leaflet/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js",
-      "leaflet/leaflet-routing-machine-3.2.12/examples/config.js",
-      "leaflet/L.Control.SlideMenu.css",
-      "leaflet/L.Control.SlideMenu.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
-      "Assets/Data/Kantor_Pemerintah.js",
-      "js/App.js",
-      "js/Access_realtime.js"
-    ]
-}  
+    {
+      "src": "Assets/img/logo-app.png",
+      "sizes": "192x192",
+      "type":"png"
+    },
+    {
+      "src": "Assets/img/crash-marker.png",
+      "sizes": "192x192",
+      "type": "png"
+    },
+    {
+      "src": "Assets/img/crash-marker-blue.png",
+      "sizes": "192x192",
+      "type": "png"
+    },
+    {
+      "src": "Assets/img/crash-marker-yellow.png",
+      "sizes": "192x192",
+      "type": "png"
+    },
+    {
+      "src": "Assets/img/user-icon.png",
+      "sizes": "192x192",
+      "type": "png"
+    },
+    {
+      "src": "Assets/img/about-app/information.png",
+      "sizes": "192x192",
+      "type": "png"
+    },
+    {
+      "src": "Assets/img/about-app/layercontrol.jpg",
+      "sizes": "192x192",
+      "type": "jpg"
+    },
+    {
+      "src": "Assets/img/about-app/legenda.jpg",
+      "sizes": "192x192",
+      "type": "jpg"
+    },
+    {
+      "src": "Assets/img/about-app/Lokasi.jpg",
+      "sizes": "192x192",
+      "type": "jpg"
+    },
+    {
+      "src": "Assets/img/about-app/notification.png",
+      "sizes": "192x192",
+      "type": "png"
+    },
+    {
+      "src": "Assets/img/about-app/Resetview.jpg",
+      "sizes": "192x192",
+      "type": "jpg"
+    },
+    {
+      "src": "Assets/img/about-app/routing.svg",
+      "sizes": "192x192",
+      "type": "svg"
+    },
+    {
+      "src": "Assets/img/about-app/Zoom.jpg",
+      "sizes": "192x192",
+      "type": "jpg"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "scope": "/",
+  "serviceworker": {
+    "src": "js/service_worker.js",
+    "scope": "/"
+  },
+  "offline_directives": [
+    "index.html",
+    "about-app.html",
+    "style/index.css",
+    "leaflet/leaflet.css",
+    "leaflet/leaflet.js",
+    "leaflet/controlLocate/L.Control.Locate.min.css",
+    "leaflet/controlLocate/L.Control.Locate.min.js",
+    "leaflet/leaflet-betterscale-master/L.Control.BetterScale.css",
+    "leaflet/leaflet-betterscale-master/L.Control.BetterScale.js",
+    "leaflet/ResetView/L.Control.ResetView.min.css",
+    "leaflet/ResetView/L.Control.ResetView.min.js",
+    "leaflet/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css",
+    "leaflet/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js",
+    "leaflet/leaflet-routing-machine-3.2.12/examples/config.js",
+    "leaflet/L.Control.SlideMenu.css",
+    "leaflet/L.Control.SlideMenu.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
+    "Assets/Data/Kantor_Pemerintah.js",
+    "js/App.js",
+    "js/Access_realtime.js"
+  ]
+}
