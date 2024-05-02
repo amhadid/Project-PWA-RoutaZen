@@ -355,11 +355,11 @@ let contents = `
             <div class="content">
                 <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Citra Hadi Saputri</div>
                 <div class="bottom">
-                    <span>-- <a href="https://api.whatsapp.com/send?phone=6285172432829">+62 851-7243-2829</a> --</span>
+                    <span>   <a href="https://api.whatsapp.com/send?phone=6285172432829">+62 851-7243-2829</a>   </span>
                 </div>
                 <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Alif Marwan Hadid</div>
                 <div class="bottom">
-                    <span>-- <a href="https://api.whatsapp.com/send?phone=6287764424810">+62 877-6442-4810</a> --</span>
+                    <span>   <a href="https://api.whatsapp.com/send?phone=6287764424810">+62 877-6442-4810</a>   </span>
                 </div>
             </div>`;
 const slideMenu = L.control
