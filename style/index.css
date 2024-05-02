@@ -57,7 +57,7 @@ body {
 }
 
 .modal-title a {
-  color: #8C7AE6; /* Mengatur warna teks untuk tautan dalam elemen dengan class modal-title menjadi putih */
+  color: #ffff; /* Mengatur warna teks untuk tautan dalam elemen dengan class modal-title menjadi putih */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
