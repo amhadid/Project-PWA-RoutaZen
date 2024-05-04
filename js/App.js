@@ -362,6 +362,7 @@ const slideMenu = L.control
           menuposition: "bottomleft",
           width: "45%",
           height: "150px",
+          icon: "fa fa-phone",
           delay: "50",
         })
         .addTo(map);
