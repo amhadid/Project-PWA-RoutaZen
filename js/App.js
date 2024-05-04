@@ -175,6 +175,21 @@ L.geoJSON(area_rawan_tinggi, {
     pointToLayer: pointToLayerRawan,
 });
 
+// Membuat fungsi pop-up Area Kota Semarang
+function pointToLayerarea(feature, latlng) {
+    var prop = feature.properties;
+    
+    var popupContent = "<b>Nama Kecamatan:</b> " + prop.NAME_3 + "<br>" +
+                       "<b>Geometry :</b> " + prop.geometry;
+    
+    return L.marker(latlng).bindPopup(popupContent);
+}
+
+// Memuat GeoJSON ke peta
+L.geoJSON(area_semarang, {
+    pointToLayer: pointToLayerarea,
+});
+
 // Buat layer-group untuk masing-masing tahun kejadian kecelakaan
 var kecelakaan2021Layer = L.geoJSON(data_kecelakaan_2021, {
     pointToLayer: pointToLayer2021,
@@ -192,6 +207,10 @@ var area_rawan = L.geoJSON(area_rawan_tinggi, {
     pointToLayer: pointToLayerRawan
 }).addTo(map);
 
+var area_kota_semarang = L.geoJSON(area_semarang, {
+    pointToLayer: pointToLayerarea
+});
+
 //--BaseMaps-----------------------------------------------------------------------------------------------------------------------------
 var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -205,6 +224,7 @@ subdomains: ['a','b','c']
 
 //--Layer Control---------------------------------------------------------------------------------------------------------------------------
 var overlayLayers = {
+    "Wilayah Penelitian": area_kota_semarang,
     "Data Kecelakaan Tahun 2021": kecelakaan2021Layer,
     "Data Kecelakaan Tahun 2022": kecelakaan2022Layer,
     "Data Kecelakaan Tahun 2023": kecelakaan2023Layer,
