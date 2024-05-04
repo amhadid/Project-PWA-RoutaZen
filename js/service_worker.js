@@ -19,6 +19,7 @@ const urlsToCache = [
   'leaflet/L.Control.SlideMenu.js',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css',
   'Assets/Data/Kantor_Pemerintah.js',
+  'js/api.js',
   'js/App.js',
   'js/Access_realtime.js'
 ];
