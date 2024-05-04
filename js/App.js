@@ -365,6 +365,6 @@ const slideMenu = L.control
           icon: "fa fa-phone",
           delay: "50",
         })
-        .addTo(map);
-        slideMenu.setContents(left + contents);
+.addTo(map);
+slideMenu.setContents(left + contents);
 
