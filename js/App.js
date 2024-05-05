@@ -173,7 +173,16 @@ function pointToLayerRawan(feature, latlng) {
 // Memuat GeoJSON ke peta
 L.geoJSON(area_rawan_tinggi, {
     pointToLayer: pointToLayerRawan,
-});
+    style: function(feature) {
+        return {
+            fillColor: 'red',
+            color: 'red',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.5
+        };
+    }
+}).addTo(map);
 
 // Membuat fungsi pop-up Area Kota Semarang
 function pointToLayerarea(feature, latlng) {
