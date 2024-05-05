@@ -59,11 +59,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 .modal-title a {
   color: #007bff; /* Mengatur warna teks untuk tautan dalam elemen dengan class modal-title menjadi putih */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-decoration: none;
-}
-
-.modal-title a:hover {
-  text-decoration: underline; /* Membuat link menjadi tebal saat mouse berada di atasnya */
+  text-decoration: underline;
 }
 
 /* Slide Kontak Menu*/
