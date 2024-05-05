@@ -267,7 +267,7 @@ const legend = L.control.Legend({
 //--Algoritma Routing--------------------------------------------------------------------------------------------------------
 // Inisialisasi Routing control
 const control = L.Routing.control({
-    router: L.Routing.mapbox('pk.eyJ1IjoiYW1oYWRpZCIsImEiOiJjbHRwZXE0NzQwcm9vMnFudzRwZGIzZXcxIn0.7saScDB-61QpiWGcrccOjg'),
+    router: L.Routing.mapbox('pk.eyJ1IjoiYW1oYWRpZCIsImEiOiJjbHZ0ZGdwMHYwdHdtMmxueXEyYTVwejJlIn0.zaYm3Q4PwQ9IA6c0w76Yew'),
     geocoder: L.Control.Geocoder.nominatim()
 }).addTo(map);
 
