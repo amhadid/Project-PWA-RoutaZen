@@ -61,6 +61,15 @@ color: #ffffff; /* Mengatur warna teks untuk tautan dalam elemen dengan class mo
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+a {
+  text-decoration: underline; /* Menambahkan garis bawah pada link */
+  color: #007bff; /* Warna default untuk link */
+}
+
+a:hover {
+  font-weight: bold; /* Membuat link menjadi tebal saat mouse berada di atasnya */
+}
+
 /* Slide Kontak Menu*/
 .content {
 margin: 0.25rem;
