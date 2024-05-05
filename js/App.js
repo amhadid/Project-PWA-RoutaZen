@@ -250,6 +250,10 @@ const legend = L.control.Legend({
     collapsed: true,
     legends: [  
     {
+        label: "Wilayah penelitian",
+        type: "image",
+        url: "./Assets/img/area-blue.png",
+    },{
         label: "Kejadian kecelakaan tahun 2021",
         type: "image",
         url: "./Assets/img/crash-marker.png",
@@ -261,6 +265,10 @@ const legend = L.control.Legend({
         label: "Kejadian kecelakaan tahun 2023",
         type: "image",
         url: "./Assets/img/crash-marker-yellow.png",
+    },{
+        label: "Area Rawan Kecelakaan",
+        type: "image",
+        url: "./Assets/img/area-rawan.png",
     }
 ]}).addTo(map);
 
