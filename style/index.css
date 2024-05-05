@@ -2,8 +2,8 @@
 body {
   margin: 0;
   padding: 0;
-  color: #000; /* Warna teks utama */
-  background-color: #fff; /* Warna latar belakang utama */
+  color: #ffff; /* Warna teks utama */
+  background-color: #3333; /* Warna latar belakang utama */
 }
 
 /* Style Map */
@@ -59,11 +59,11 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 .modal-title a {
   color: #007bff; /* Mengatur warna teks untuk tautan dalam elemen dengan class modal-title menjadi putih */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .modal-title a:hover {
-  font-weight: bold; /* Membuat link menjadi tebal saat mouse berada di atasnya */
+  text-decoration: underline; /* Membuat link menjadi tebal saat mouse berada di atasnya */
 }
 
 /* Slide Kontak Menu*/
