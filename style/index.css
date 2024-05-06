@@ -35,9 +35,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #C1C0C0;
+  background-color: #101820;
   padding: 5px;
-  border: 2px solid #3A3939; /* Ubah warna border agar lebih kontras dengan background */
+  border: 2px solid #ffff; /* Ubah warna border agar lebih kontras dengan background */
   border-radius: 10px;
   z-index: 1000; /* Pastikan pop-up muncul di atas elemen lain */
 }
@@ -45,15 +45,15 @@ body {
 .popup-content {
   text-align: center;
   font-size: small;
-  color: #3A3939;
-  border-bottom: 1px solid #3A3939;
+  color: #ffff;
+  border-bottom: 1px solid #ffff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* Style the modal title */
 .modal-title {
   font-size: 12px; /* Set the font size */
-  color: #3A3939; /* Text color */
+  color: #ffff; /* Text color */
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
