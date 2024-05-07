@@ -351,7 +351,7 @@ function onLocationFound(e) {
 
 // Fungsi untuk menampilkan notifikasi
 function showNotification(message) {
-    new Notification('Notifikasi', {
+    new Notification('AWAS !!!!', {
         body: message
     });
 }
