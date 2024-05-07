@@ -224,7 +224,7 @@ var area_kota_semarang = L.geoJSON(area_semarang, {
 var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 subdomains: ['a','b','c']
-}).addTo(map);   
+}).addTo(map);
      
 var World_Imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 attribution: '&copy; <a href="https://www.esri.com/en-us/home">Esri</a>',
@@ -242,7 +242,7 @@ var overlayLayers = {
 
 var baseMaps = {
 "World_Imagery": World_Imagery,
-"OpenStreetMap": osm,  
+"OpenStreetMap": osm, 
 };
 
 var layerControl = L.control.layers(baseMaps, overlayLayers).addTo(map);
@@ -251,41 +251,43 @@ layerControl.setPosition('topright');
 //--Legenda---------------------------------------------------------------------------------------------------------------------------------
 const legend = L.control.Legend({
     position: "topright",
-    title: "Legenda",
+    title: "LEGENDA",
     symbolWidth: 24,
     symbolHeight: 15,
     opacity: 1.0,
     column: 1,
     collapsed: true,
-    legends: [  
-    {
-        label: "Wilayah penelitian",
-        type: "image",
-        url: "./Assets/img/area-blue.png",
-    },{
-        label: "Kejadian kecelakaan tahun 2021",
-        type: "image",
-        url: "./Assets/img/crash-marker.png",
-    },{
-        label: "Kejadian kecelakaan tahun 2022",
-        type: "image",
-        url: "./Assets/img/crash-marker-blue.png",
-    },{
-        label: "Kejadian kecelakaan tahun 2023",
-        type: "image",
-        url: "./Assets/img/crash-marker-yellow.png",
-    },{
-        label: "Area Rawan Kecelakaan",
-        type: "image",
-        url: "./Assets/img/area-rawan.png",
-    }
-]}).addTo(map);
+    legends: [ 
+        {
+            label: "Wilayah penelitian",
+            type: "image",
+            url: "./Assets/img/area-blue.png",
+        },{
+            label: "Kejadian kecelakaan tahun 2021",
+            type: "image",
+            url: "./Assets/img/crash-marker.png",
+        },{
+            label: "Kejadian kecelakaan tahun 2022",
+            type: "image",
+            url: "./Assets/img/crash-marker-blue.png",
+        },{
+            label: "Kejadian kecelakaan tahun 2023",
+            type: "image",
+            url: "./Assets/img/crash-marker-yellow.png",
+        },{
+            label: "Area Rawan Kecelakaan",
+            type: "image",
+            url: "./Assets/img/area-rawan.png",
+        }
+    ]
+}).addTo(map);
 
 //--Algoritma Routing--------------------------------------------------------------------------------------------------------
 // Inisialisasi Routing control
 const control = L.Routing.control({
     router: L.Routing.mapbox('pk.eyJ1IjoiYW1oYWRpZCIsImEiOiJjbHZ0ZGdwMHYwdHdtMmxueXEyYTVwejJlIn0.zaYm3Q4PwQ9IA6c0w76Yew'),
-    geocoder: L.Control.Geocoder.nominatim()
+    geocoder: L.Control.Geocoder.nominatim(),
+    routeWhileDragging: true,
 }).addTo(map);
 
 // Tambahkan event listener pada peta untuk menangkap klik pengguna
@@ -312,24 +314,12 @@ map.on('click', function(event) {
     }
 });
 
-// Tambahkan event listener untuk menampilkan pop-up pada hasil rute
-control.on('routeselected', function(e) {
-    const route = e.route;
-    const start = route.inputWaypoints[0];
-    const end = route.inputWaypoints[1];
-
-    const startPopup = L.popup()
-        .setLatLng(start.latLng)
-        .setContent("Titik Awal: " + start.name)
-        .openOn(map);
-
-    const endPopup = L.popup()
-        .setLatLng(end.latLng)
-        .setContent("Titik Akhir: " + end.name)
-        .openOn(map);
-});
-
 //--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
+// Tentukan fungsi untuk memeriksa lokasi pengguna
+function checkLocation() {
+    map.locate({setView: true});
+}
+
 // Tentukan fungsi untuk menangani lokasi yang ditemukan
 function onLocationFound(e) {
     var userLocation = e.latlng;
@@ -345,34 +335,29 @@ function onLocationFound(e) {
     // Periksa apakah browser mendukung notifikasi
     if (!("Notification" in window)) {
         console.error("Browser ini tidak mendukung notifikasi desktop");
-    } else if (Notification.permission === "granted" && userWithinArea) {
+    } else {
         // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
-        showNotification("Anda berada dalam Area Rawan Kecelakaan");
-    } else if (Notification.permission !== "denied" && userWithinArea) {
-        Notification.requestPermission().then(function(permission) {
-            if (permission === "granted") {
-                showNotification("Anda berada dalam Area Rawan Kecelakaan");
-            }
-        });
-    }
-}
-
-// Fungsi untuk menampilkan notifikasi
-function showNotification(message) {
-    if ('Notification' in window) {
-        if (Notification.permission === "granted") {
-            new Notification('Notifikasi', {
-                body: message
+        if (userWithinArea && Notification.permission === "granted") {
+            showNotification("Anda berada dalam Area Rawan Kecelakaan");
+        } else if (userWithinArea && Notification.permission !== "denied") {
+            Notification.requestPermission().then(function(permission) {
+                if (permission === "granted") {
+                    showNotification("Anda berada dalam Area Rawan Kecelakaan");
+                }
             });
         }
     }
 }
 
-// Panggil fungsi checkLocation sekali untuk memulai
-checkLocation();
+// Fungsi untuk menampilkan notifikasi
+function showNotification(message) {
+    new Notification('Notifikasi', {
+        body: message
+    });
+}
 
-// Panggil fungsi checkLocation setiap 15 detik
-setInterval(checkLocation, 15000);
+// Dengarkan acara lokasi ditemukan
+map.on('locationfound', onLocationFound);
 
 // Panggil fungsi checkLocation sekali untuk memulai
 checkLocation();
@@ -386,11 +371,11 @@ let contents = `
             <div class="content">
                 <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Citra Hadi Saputri</div>
                 <div class="bottom">
-                    <span>   <a href="https://api.whatsapp.com/send?phone=6285172432829">+62 851-7243-2829</a>   </span>
+                    <span>-- <a href="https://api.whatsapp.com/send?phone=085172432829">+62 851-7243-2829</a> --</span>
                 </div>
                 <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Alif Marwan Hadid</div>
                 <div class="bottom">
-                    <span>   <a href="https://api.whatsapp.com/send?phone=6287764424810">+62 877-6442-4810</a>   </span>
+                    <span>-- <a href="https://api.whatsapp.com/send?phone=087764424810">+62 877-6442-4810</a> --</span>
                 </div>
             </div>`;
 const slideMenu = L.control
@@ -404,4 +389,3 @@ const slideMenu = L.control
         })
 .addTo(map);
 slideMenu.setContents(left + contents);
-
