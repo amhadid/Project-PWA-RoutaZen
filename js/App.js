@@ -330,11 +330,6 @@ control.on('routeselected', function(e) {
 });
 
 //--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
-// Tentukan fungsi untuk memeriksa lokasi pengguna
-function checkLocation() {
-    map.locate({setView: true});
-}
-
 // Tentukan fungsi untuk menangani lokasi yang ditemukan
 function onLocationFound(e) {
     var userLocation = e.latlng;
@@ -350,29 +345,34 @@ function onLocationFound(e) {
     // Periksa apakah browser mendukung notifikasi
     if (!("Notification" in window)) {
         console.error("Browser ini tidak mendukung notifikasi desktop");
-    } else {
+    } else if (Notification.permission === "granted" && userWithinArea) {
         // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
-        if (userWithinArea && Notification.permission === "granted") {
-            showNotification("Anda berada dalam Area Rawan Kecelakaan");
-        } else if (userWithinArea && Notification.permission !== "denied") {
-            Notification.requestPermission().then(function(permission) {
-                if (permission === "granted") {
-                    showNotification("Anda berada dalam Area Rawan Kecelakaan");
-                }
-            });
-        }
+        showNotification("Anda berada dalam Area Rawan Kecelakaan");
+    } else if (Notification.permission !== "denied" && userWithinArea) {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+                showNotification("Anda berada dalam Area Rawan Kecelakaan");
+            }
+        });
     }
 }
 
 // Fungsi untuk menampilkan notifikasi
 function showNotification(message) {
-    new Notification('Notifikasi', {
-        body: message
-    });
+    if ('Notification' in window) {
+        if (Notification.permission === "granted") {
+            new Notification('Notifikasi', {
+                body: message
+            });
+        }
+    }
 }
 
-// Dengarkan acara lokasi ditemukan
-map.on('locationfound', onLocationFound);
+// Panggil fungsi checkLocation sekali untuk memulai
+checkLocation();
+
+// Panggil fungsi checkLocation setiap 15 detik
+setInterval(checkLocation, 15000);
 
 // Panggil fungsi checkLocation sekali untuk memulai
 checkLocation();
