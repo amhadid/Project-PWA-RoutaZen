@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-frontend": "cd ./index.html && npm start",
+    "start-frontend": "./client/index.html && npm start",
     "start-server": "node index.js",
     "dev": "concurrently \"npm run start-server\" \"npm run start-frontend\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "pg": "^8.11.5"
+    "pg": "^8.11.5",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
