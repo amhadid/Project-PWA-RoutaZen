@@ -338,11 +338,11 @@ function onLocationFound(e) {
     } else {
         // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
         if (userWithinArea && Notification.permission === "granted") {
-            showNotification("Anda berada dalam Area Rawan Kecelakaan");
+            showNotification(" Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
         } else if (userWithinArea && Notification.permission !== "denied") {
             Notification.requestPermission().then(function(permission) {
                 if (permission === "granted") {
-                    showNotification("Anda berada dalam Area Rawan Kecelakaan");
+                    showNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
                 }
             });
         }
@@ -351,7 +351,7 @@ function onLocationFound(e) {
 
 // Fungsi untuk menampilkan notifikasi
 function showNotification(message) {
-    new Notification('AWAS !!!!', {
+    new Notification('HATI-HATI !!!!', {
         body: message
     });
 }
