@@ -315,12 +315,32 @@ map.on('click', function(event) {
 });
 
 //--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
-// Tentukan fungsi untuk memeriksa lokasi pengguna
-function checkLocation() {
-    map.locate({setView: true});
+// Tambahkan service worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service_worker.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
 }
 
-// Tentukan fungsi untuk menangani lokasi yang ditemukan
+// Fungsi untuk menampilkan notifikasi push
+function showPushNotification(message) {
+    if ('serviceWorker' in navigator && 'PushManager' in window) {
+        navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification('HATI-HATI !!!!', {
+                body: message
+            });
+        });
+    }
+}
+
+// Dengarkan acara lokasi ditemukan
+map.on('locationfound', onLocationFound);
+
+// Perubahan pada fungsi onLocationFound
 function onLocationFound(e) {
     var userLocation = e.latlng;
 
@@ -332,32 +352,17 @@ function onLocationFound(e) {
         }
     });
 
-    // Periksa apakah browser mendukung notifikasi
-    if (!("Notification" in window)) {
-        console.error("Browser ini tidak mendukung notifikasi desktop");
-    } else {
-        // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
-        if (userWithinArea && Notification.permission === "granted") {
-            showNotification(" Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
-        } else if (userWithinArea && Notification.permission !== "denied") {
-            Notification.requestPermission().then(function(permission) {
-                if (permission === "granted") {
-                    showNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
-                }
-            });
-        }
+    // Tampilkan notifikasi push jika pengguna berada dalam area rawan kecelakaan
+    if (userWithinArea && Notification.permission === "granted") {
+        showPushNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
+    } else if (userWithinArea && Notification.permission !== "denied") {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+                showPushNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
+            }
+        });
     }
 }
-
-// Fungsi untuk menampilkan notifikasi
-function showNotification(message) {
-    new Notification('HATI-HATI !!!!', {
-        body: message
-    });
-}
-
-// Dengarkan acara lokasi ditemukan
-map.on('locationfound', onLocationFound);
 
 // Panggil fungsi checkLocation sekali untuk memulai
 checkLocation();
