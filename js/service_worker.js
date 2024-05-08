@@ -79,7 +79,7 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// Tangani pesan dari aplikasi utama
+// Push Notifikasi
 self.addEventListener('message', function(event) {
   var message = event.data;
   if (message && message.type === 'show_notification') {
@@ -89,4 +89,10 @@ self.addEventListener('message', function(event) {
           icon: './Assets/img/death-zone.png' // Ganti dengan path gambar Anda
       });
   }
+});
+
+// Tangani peristiwa klik pada notifikasi
+self.addEventListener('notificationclick', function(event) {
+  // Buka atau fokus aplikasi ketika notifikasi diklik
+  clients.openWindow('/');
 });
