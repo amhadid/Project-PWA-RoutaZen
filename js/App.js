@@ -338,7 +338,7 @@ function onLocationFound(e) {
     } else {
         // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
         if (userWithinArea && Notification.permission === "granted") {
-            showNotification(" Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
+            showNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
         } else if (userWithinArea && Notification.permission !== "denied") {
             Notification.requestPermission().then(function(permission) {
                 if (permission === "granted") {
@@ -351,23 +351,35 @@ function onLocationFound(e) {
 
 // Fungsi untuk menampilkan notifikasi
 function showNotification(message) {
-
-    var iconPath = './Assets/img/death-zone.png';
-
-    // Membuat objek notifikasi dengan gambar
-    var notification = new Notification('HATI-HATI !!!!', {
-        body: message,
-        icon: iconPath
-    });
-
-    // Tambahkan event listener untuk menangani klik pada notifikasi
-    notification.onclick = function(event) {
-        event.preventDefault(); // Mencegah default action (misalnya, membuka tab)
-    };
+    // Periksa apakah Service Worker telah terdaftar dan aktif
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        // Kirim pesan ke Service Worker untuk menampilkan notifikasi
+        navigator.serviceWorker.controller.postMessage({
+            type: 'show_notification',
+            message: message
+        });
+    } else {
+        // Service Worker belum terdaftar atau aktif, tampilkan notifikasi langsung
+        new Notification('HATI-HATI !!!!', {
+            body: message,
+            icon: './Assets/img/death-zone.png'
+        });
+    }
 }
 
 // Dengarkan acara lokasi ditemukan
 map.on('locationfound', onLocationFound);
+
+// Daftarkan Service Worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./js/service_worker.js')
+    .then(function(registration) {
+        console.log('Service Worker registered successfully:', registration);
+    })
+    .catch(function(error) {
+        console.error('Service Worker registration failed:', error);
+    });
+}
 
 // Panggil fungsi checkLocation sekali untuk memulai
 checkLocation();
