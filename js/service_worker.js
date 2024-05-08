@@ -79,33 +79,6 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// Tentukan fungsi untuk menampilkan notifikasi
-function showNotification(message) {
-  // Periksa apakah browser mendukung notifikasi
-  if (!("Notification" in window)) {
-      console.error("Browser ini tidak mendukung notifikasi desktop");
-  } else {
-      // Minta izin notifikasi jika belum diberikan
-      if (Notification.permission === "granted") {
-          // Kirim pesan ke Service Worker untuk menampilkan notifikasi
-          navigator.serviceWorker.controller.postMessage({
-              type: 'show_notification',
-              message: message
-          });
-      } else if (Notification.permission !== "denied") {
-          Notification.requestPermission().then(function(permission) {
-              if (permission === "granted") {
-                  // Kirim pesan ke Service Worker untuk menampilkan notifikasi
-                  navigator.serviceWorker.controller.postMessage({
-                      type: 'show_notification',
-                      message: message
-                  });
-              }
-          });
-      }
-  }
-}
-
 // Tangani pesan dari aplikasi utama
 self.addEventListener('message', function(event) {
   var message = event.data;
