@@ -351,9 +351,19 @@ function onLocationFound(e) {
 
 // Fungsi untuk menampilkan notifikasi
 function showNotification(message) {
-    new Notification('HATI-HATI !!!!', {
-        body: message
+
+    var iconPath = './Assets/img/death-zone.png';
+
+    // Membuat objek notifikasi dengan gambar
+    var notification = new Notification('HATI-HATI !!!!', {
+        body: message,
+        icon: iconPath
     });
+
+    // Tambahkan event listener untuk menangani klik pada notifikasi
+    notification.onclick = function(event) {
+        event.preventDefault(); // Mencegah default action (misalnya, membuka tab)
+    };
 }
 
 // Dengarkan acara lokasi ditemukan
