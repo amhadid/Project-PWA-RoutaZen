@@ -79,7 +79,14 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-self.addEventListener('notificationclick', function(event) {
-  event.notification.close();
-  // Add your custom logic for notification click here, e.g., redirecting to a specific page.
+// Tangani pesan dari aplikasi utama
+self.addEventListener('message', function(event) {
+  var message = event.data;
+  if (message && message.type === 'show_notification') {
+      // Tampilkan notifikasi
+      self.registration.showNotification('HATI-HATI !!!!', {
+          body: message.message,
+          icon: './Assets/img/death-zone.png' // Ganti dengan path gambar Anda
+      });
+  }
 });
