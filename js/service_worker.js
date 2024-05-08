@@ -79,7 +79,34 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// Push Notifikasi
+// Tentukan fungsi untuk menampilkan notifikasi
+function showNotification(message) {
+  // Periksa apakah browser mendukung notifikasi
+  if (!("Notification" in window)) {
+      console.error("Browser ini tidak mendukung notifikasi desktop");
+  } else {
+      // Minta izin notifikasi jika belum diberikan
+      if (Notification.permission === "granted") {
+          // Kirim pesan ke Service Worker untuk menampilkan notifikasi
+          navigator.serviceWorker.controller.postMessage({
+              type: 'show_notification',
+              message: message
+          });
+      } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then(function(permission) {
+              if (permission === "granted") {
+                  // Kirim pesan ke Service Worker untuk menampilkan notifikasi
+                  navigator.serviceWorker.controller.postMessage({
+                      type: 'show_notification',
+                      message: message
+                  });
+              }
+          });
+      }
+  }
+}
+
+// Tangani pesan dari aplikasi utama
 self.addEventListener('message', function(event) {
   var message = event.data;
   if (message && message.type === 'show_notification') {
@@ -89,10 +116,4 @@ self.addEventListener('message', function(event) {
           icon: './Assets/img/death-zone.png' // Ganti dengan path gambar Anda
       });
   }
-});
-
-// Tangani peristiwa klik pada notifikasi
-self.addEventListener('notificationclick', function(event) {
-  // Buka atau fokus aplikasi ketika notifikasi diklik
-  clients.openWindow('/');
 });
