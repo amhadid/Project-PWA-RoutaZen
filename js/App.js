@@ -336,13 +336,15 @@ function onLocationFound(e) {
     if (!("Notification" in window)) {
         console.error("Browser ini tidak mendukung notifikasi desktop");
     } else {
-        // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi
+        // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi dan pop-up
         if (userWithinArea && Notification.permission === "granted") {
             showNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
+            showPopup("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
         } else if (userWithinArea && Notification.permission !== "denied") {
             Notification.requestPermission().then(function(permission) {
                 if (permission === "granted") {
                     showNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
+                    showPopup("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
                 }
             });
         }
@@ -365,6 +367,33 @@ function showNotification(message) {
             icon: './Assets/img/death-zone.png'
         });
     }
+}
+
+// Fungsi untuk menampilkan pop-up
+function showPopup(message) {
+    // Buat elemen pop-up
+    var popup = document.createElement('div');
+    popup.className = 'popup-notification';
+    popup.innerText = message;
+    
+    // Gaya dasar untuk pop-up
+    popup.style.position = 'fixed';
+    popup.style.bottom = '25px';
+    popup.style.right = '10px';
+    popup.style.padding = '5px';
+    popup.style.backgroundColor = '#101820';
+    popup.style.color = 'white';
+    popup.style.borderRadius = '5px';
+    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    popup.style.zIndex = '1000';
+    
+    // Tambahkan elemen pop-up ke dalam body
+    document.body.appendChild(popup);
+
+    // Hapus pop-up setelah 5 detik
+    setTimeout(function() {
+        document.body.removeChild(popup);
+    }, 5000);
 }
 
 // Dengarkan acara lokasi ditemukan
