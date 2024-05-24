@@ -60,17 +60,3 @@ app.get('/api/user', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
-// Inisiasi Web Push Notification
-const webpush = require('web-push');
-
-const vapidKeys = {
-    publicKey: 'BFYHqviM41kpJwTXuovLAUDJAWuBKd12oY4HfBpVXmRrNlb2dHCRR6tgn45vPmrgH9JlqLJqJL7uDA_As6LgfsA',
-    privateKey: 'jVWwOjgsnE3QzqEqccjLFnIa-cNPPw7KCw6t9ZsNaHg'
-};
-
-webpush.setVapidDetails(
-    'alifmhadid@gmail.com',
-    vapidKeys.publicKey,
-    vapidKeys.privateKey
-);
