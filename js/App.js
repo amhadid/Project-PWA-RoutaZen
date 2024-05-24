@@ -1,7 +1,7 @@
-//--Posisi Peta ------------------------------------------------------------------------------------------------
+//--Posisi Peta --
 var map = L.map('map').setView([-6.992, 110.418], 11);
 
-//--Dialog Before Using Apps -----------------------------------------------------------------------------------
+//--Dialog Before Using Apps --
 var popup = document.getElementById("popup");
 
 function showPopup() {
@@ -37,7 +37,7 @@ window.addEventListener("load", function() {
 });
 window.addEventListener("resize", adjustPopupPosition);
 
-//--ResetView----------------------------------------------------------------------------------------------------------
+//--ResetView--
 L.control.resetView({
 position: "topleft",
 title: "Reset view",
@@ -45,7 +45,7 @@ latlng: L.latLng([-7.052, 110.439]),
 zoom: 13,
 }).addTo(map);
 
-//--fullscreen----------------------------------------------------------------------------------------------------------
+//--fullscreen--
 map.on('enterFullscreen', function(){
 if(window.console) window.console.log('enterFullscreen');
 });
@@ -53,13 +53,13 @@ map.on('exitFullscreen', function(){
 if(window.console) window.console.log('exitFullscreen');
 });
 
-//--Lokasi--------------------------------------------------------------------------------------------------------------
+//--Lokasi--
 L.control.locate().addTo(map);
 
-//--Skala---------------------------------------------------------------------------------------------------------------
+//--Skala--
 L.control.betterscale().addTo(map);
 
-//--Geocoder------------------------------------------------------------------------------------------------------------
+//--Geocoder--
 var geocoder = L.Control.geocoder({
     defaultMarkGeocode: false
   })
@@ -75,8 +75,7 @@ var geocoder = L.Control.geocoder({
     })
     .addTo(map);
 
-//--Connect Server------------------------------------------------------------------------------------------------------
-// Connect Server
+//--Connect Server--
 function fetchData() {
     fetch('http://localhost:4000/api/user')
         .then(response => response.json())
@@ -102,7 +101,7 @@ function fetchData() {
 // Panggil fungsi fetchData saat halaman dimuat
 window.onload = fetchData;
 
-//--Add GeoJSON---------------------------------------------------------------------------------------------------------
+//--Add GeoJSON--
 // Data Kejadian Kecelakaan Tahun 2021
 var crashIcon = L.icon({
     iconUrl: './Assets/img/crash-marker.png',
@@ -247,7 +246,7 @@ var area_kota_semarang = L.geoJSON(area_semarang, {
     pointToLayer: pointToLayerarea
 });
 
-//--BaseMaps-----------------------------------------------------------------------------------------------------------------------------
+//--BaseMaps--
 var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 subdomains: ['a','b','c']
@@ -258,7 +257,7 @@ attribution: '&copy; <a href="https://www.esri.com/en-us/home">Esri</a>',
 subdomains: ['a','b','c']
 });
 
-//--Layer Control---------------------------------------------------------------------------------------------------------------------------
+//--Layer Control--
 var overlayLayers = {
     "Wilayah Penelitian": area_kota_semarang,
     "Data Kecelakaan Tahun 2021": kecelakaan2021Layer,
@@ -275,7 +274,7 @@ var baseMaps = {
 var layerControl = L.control.layers(baseMaps, overlayLayers).addTo(map);
 layerControl.setPosition('topright');
 
-//--Legenda---------------------------------------------------------------------------------------------------------------------------------
+//--Legenda--
 const legend = L.control.Legend({
     position: "topright",
     title: "LEGENDA",
@@ -309,7 +308,7 @@ const legend = L.control.Legend({
     ]
 }).addTo(map);
 
-//--Algoritma Routing--------------------------------------------------------------------------------------------------------
+//--Algoritma Routing--
 // Inisialisasi Routing control
 const control = L.Routing.control({
     router: L.Routing.mapbox('pk.eyJ1IjoiYW1oYWRpZCIsImEiOiJjbHZ0ZGdwMHYwdHdtMmxueXEyYTVwejJlIn0.zaYm3Q4PwQ9IA6c0w76Yew'),
@@ -341,7 +340,7 @@ map.on('click', function(event) {
     }
 });
 
-//--Algoritma Geofence-----------------------------------------------------------------------------------------------------------------------
+//--Algoritma Geofence--
 // Tentukan fungsi untuk memeriksa lokasi pengguna
 function checkLocation() {
     map.locate({setView: true});
@@ -443,7 +442,7 @@ checkLocation();
 // Panggil fungsi checkLocation setiap 15 detik
 setInterval(checkLocation, 15000);
 
-//--Kontak Menu--------------------------------------------------------------------------------------------------------------------------------
+//--Kontak Menu--
 const left = '<div class="header"><img src="./Assets/img/notebook-of-contacts.png" alt="Image" style="width: 15px; height: 13px;"><b> Kontak</b></div>';
 let contents = `
             <div class="content">
