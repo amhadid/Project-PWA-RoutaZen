@@ -350,7 +350,7 @@ function checkLocation() {
 function onLocationFound(e) {
     var userLocation = e.latlng;
 
-    // Periksa apakah lokasi pengguna berada dalam batas-batas fitur apa pun dalam lapisan GeoJSON
+    // Periksa apakah lokasi pengguna berada dalam area rawan kecelakaan
     var userWithinArea = false;
     area_rawan.eachLayer(function(layer) {
         if (layer.getBounds().contains(userLocation)) {
@@ -362,7 +362,7 @@ function onLocationFound(e) {
     if (!("Notification" in window)) {
         console.error("Browser ini tidak mendukung notifikasi desktop");
     } else {
-        // Jika pengguna berada dalam fitur apa pun dalam lapisan GeoJSON, tampilkan notifikasi dan pop-up
+        // Jika pengguna berada dalam area rawan kecelakaan, tampilkan notifikasi dan pop-up
         if (userWithinArea && Notification.permission === "granted") {
             showNotification("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
             showPopup("Saat ini anda sedang berada dalam Area Rawan Kecelakaan");
