@@ -19,7 +19,6 @@ const urlsToCache = [
   './leaflet/L.Control.SlideMenu.js',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css',
   './Assets/Data/Kantor_Pemerintah.js',
-  "./js/api.js",
   './js/App.js',
   './js/Access_realtime.js'
 ];
@@ -91,7 +90,7 @@ self.addEventListener('message', function(event) {
       // Tampilkan notifikasi
       self.registration.showNotification('HATI-HATI !!!!', {
           body: message.message,
-          icon: './Assets/img/death-zone.png' // Ganti dengan path gambar Anda
+          icon: './Assets/img/traffic-accident.png' // Ganti dengan path gambar Anda
       });
   }
 });
