@@ -390,7 +390,7 @@ function showNotification(message) {
         // Service Worker belum terdaftar atau aktif, tampilkan notifikasi langsung
         new Notification('HATI-HATI !!!!', {
             body: message,
-            icon: './Assets/img/death-zone.png'
+            icon: './Assets/img/traffic-accident.png'
         });
     }
 }
