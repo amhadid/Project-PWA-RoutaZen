@@ -18,6 +18,8 @@ const urlsToCache = [
   './leaflet/L.Control.SlideMenu.css',
   './leaflet/L.Control.SlideMenu.js',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css',
+  'https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css',
+  'https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js',
   './Assets/Data/Kantor_Pemerintah.js',
   './js/App.js',
   './js/Access_realtime.js'
