@@ -1,3 +1,18 @@
+// Connect Server
+function fetchData() {
+    fetch('http://localhost:4000/api/user')
+        .then(response => response.json())
+        .then(({ areaSemarang }) => {
+            console.log("Area Kota Semarang:");
+            console.log(areaSemarang);
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Panggil fungsi fetchData saat halaman dimuat
+window.onload = fetchData;
+
+// Buat variabel dari hasil connect database
 var area_semarang = {
 "type": "FeatureCollection",
 "name": "area-kota-semarang",
