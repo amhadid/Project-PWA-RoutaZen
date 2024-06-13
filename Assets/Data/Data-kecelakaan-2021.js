@@ -1,3 +1,18 @@
+//Connect Server
+function fetchData() {
+    fetch('http://localhost:4000/api/user')
+        .then(response => response.json())
+        .then(({ kecelakaan2021 }) => {
+            console.log("Kecelakaan 2021:");
+            console.log(kecelakaan2021);
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Panggil fungsi fetchData saat halaman dimuat
+window.onload = fetchData;
+
+// Buat variabel dari hasil connect database
 var data_kecelakaan_2021 = {
 "type": "FeatureCollection",
 "name": "Data-kecelakaan-2021",
