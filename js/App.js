@@ -433,7 +433,7 @@ const slideMenu = L.control
         .slideMenu("", {
           position: "topleft",
           menuposition: "bottomleft",
-          width: "45%",
+          width: "40%",
           height: "150px",
           icon: "fa fa-phone",
           delay: "50",
