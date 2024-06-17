@@ -18276,7 +18276,7 @@ module.exports = L.Routing = {
 				{color: 'red', opacity: 1, weight: 2, dashArray: '7,12'}
 			],
 			draggableWaypoints: true,
-			routeWhileDragging: false,
+			routeWhileDragging: true,
 			addWaypoints: false,
 			reverseWaypoints: false,
 			addButtonClassName: '',
