@@ -6,7 +6,7 @@
     <title>RoutaZen</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1B1C50">
+    <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="./Assets/img/logo-app.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -62,6 +62,7 @@
         <!-- Pop-up -->
         <div id="popup" class="popup">
             <div class="popup-content">
+                <button class="close-btn" onclick="closePopup()">×</button>
                 <h3>Selamat datang di WebApp RoutaZen!</h3>
                 <p>Selamatkan Dirimu dari Area Rawan Kecelakaan. Yuk Pilih Tujuan Destinasi Kamu!</p>
             </div>
@@ -69,6 +70,7 @@
                 <p class="modal-title justify-text"> Panduan lengkap Web App <a href="about-app.html" target="_blank"> Klik Disini </a></p>
             </div>
         </div>
+        
 
         <!-- Refresh Button -->
         <button id="refresh-button" onclick="location.reload();">
@@ -82,7 +84,7 @@
         <script src="./Assets/Data/area-rawan-tinggi.js" ></script>
         <script src="./Assets/Data/area-kota-semarang.js" ></script>
 
-        <!-- Connect to App.js -->
+        <!-- Connect App.js -->
         <script src="./js/App.js" ></script>
 
         <!-- Real-time Access -->
