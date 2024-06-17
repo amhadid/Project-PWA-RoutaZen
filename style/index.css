@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  color: ##0a0a0a; /* Warna teks utama */
+  color: #0a0a0a; /* Warna teks utama */
   background-color: #faf9f9; /* Warna latar belakang utama */
 }
 
@@ -37,23 +37,34 @@ body {
   transform: translate(-50%, -50%);
   background-color: #101820;
   padding: 5px;
-  border: 2px solid #ffff; /* Ubah warna border agar lebih kontras dengan background */
+  border: 2px solid #ffffff; /* Ubah warna border agar lebih kontras dengan background */
   border-radius: 10px;
   z-index: 1000; /* Pastikan pop-up muncul di atas elemen lain */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Menambahkan bayangan hitam */
 }
 
 .popup-content {
   text-align: center;
   font-size: small;
-  color: #ffff;
-  border-bottom: 1px solid #ffff;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.close-btn {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  background: rgb(182, 180, 180);
+  border: white;
+  font-size: 10px;
+  cursor: pointer;
 }
 
 /* Style the modal title */
 .modal-title {
   font-size: 12px; /* Set the font size */
-  color: #ffff; /* Text color */
+  color: #ffffff; /* Text color */
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -87,4 +98,16 @@ body {
   font-size: 11px;
   color: #192A56;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Default style for mobile phones */
+.slide-menu {
+  width: 45% !important;
+}
+
+/* Style for desktop */
+@media only screen and (min-width: 768px) {
+  .slide-menu {
+    width: 20%;
+  }
 }
