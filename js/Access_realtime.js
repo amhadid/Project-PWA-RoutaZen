@@ -13,7 +13,6 @@ function getPosition(position){
     // console.log(position)
     var lat = position.coords.latitude
     var long = position.coords.longitude
-    var accuracy = position.coords.accuracy
 
     if(marker) {
         map.removeLayer(marker)
@@ -42,7 +41,7 @@ function getPosition(position){
     // Add marker and circle to a feature group
     var featureGroup = L.featureGroup([marker, circle]).addTo(map);
 
-    console.log("Your Location is: Lat: "+ lat +" Long: "+ long+ " Accuracy: "+ accuracy)
+    console.log("Your Location is: Lat: "+ lat +" Long: "+ long)
 }
 
 // If Cannot Access Geolocation
