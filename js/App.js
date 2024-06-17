@@ -8,6 +8,10 @@ function showPopup() {
   popup.style.display = "block";
 }
 
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
 function hidePopup() {
   popup.style.display = "none";
 }
