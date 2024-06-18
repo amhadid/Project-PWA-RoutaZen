@@ -282,8 +282,26 @@ const control = L.Routing.control({
 map.on('click', function(event) {
     const destinationLatLng = event.latlng;
 
-    // Tampilkan dialog konfirmasi
-    if (confirm('Apakah Anda yakin ingin pergi ke lokasi ini?')) {
+    // Buat elemen HTML untuk pop-up
+    const popupContent = `
+        <div>
+            <p>Apakah Anda yakin ingin pergi ke lokasi ini?</p>
+            <button id="confirmButton">Ya</button>
+            <button id="cancelButton">Tidak</button>
+        </div>
+    `;
+
+    // Tampilkan pop-up di lokasi yang diklik
+    const popup = L.popup()
+        .setLatLng(destinationLatLng)
+        .setContent(popupContent)
+        .openOn(map);
+
+    // Tambahkan event listener untuk tombol konfirmasi
+    document.getElementById('confirmButton').addEventListener('click', function() {
+        // Tutup pop-up
+        map.closePopup(popup);
+
         // Dapatkan lokasi pengguna saat ini menggunakan geolocation (jika tersedia)
         navigator.geolocation.getCurrentPosition(function(position) {
             const userLatLng = {
@@ -299,7 +317,13 @@ map.on('click', function(event) {
         }, function(error) {
             console.error('Tidak dapat mengakses lokasi pengguna:', error);
         });
-    }
+    });
+
+    // Tambahkan event listener untuk tombol batal
+    document.getElementById('cancelButton').addEventListener('click', function() {
+        // Tutup pop-up
+        map.closePopup(popup);
+    });
 });
 
 //--Algoritma Geofence--
