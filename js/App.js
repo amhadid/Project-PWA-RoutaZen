@@ -417,30 +417,52 @@ if ('serviceWorker' in navigator) {
 // Panggil fungsi checkLocation sekali untuk memulai
 checkLocation();
 
-// Panggil fungsi checkLocation setiap 15 detik
-setInterval(checkLocation, 15000);
-
 //--Kontak Menu--
+// Fungsi untuk mendapatkan lebar responsif berdasarkan ukuran layar
+function getResponsiveWidth() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth <= 480) { // Mobile devices
+        return "45%";
+    } else if (screenWidth <= 768) { // Tablets
+        return "30%";
+    } else { // Laptop/PC
+        return "20%";
+    }
+}
+
+// Fungsi untuk mengatur ulang lebar slideMenu
+function updateSlideMenuWidth(slideMenu) {
+    const newWidth = getResponsiveWidth();
+    slideMenu._container.style.width = newWidth;
+}
+
+// Inisialisasi slideMenu dengan lebar responsif
 const left = '<div class="header"><img src="./Assets/img/notebook-of-contacts.png" alt="Image" style="width: 15px; height: 13px;"><b> Kontak</b></div>';
 let contents = `
-            <div class="content">
-                <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Citra Hadi Saputri</div>
-                <div class="bottom">
-                    <span>-- <a href="https://api.whatsapp.com/send?phone=085172432829">+62 851-7243-2829</a> --</span>
-                </div>
-                <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Alif Marwan Hadid</div>
-                <div class="bottom">
-                    <span>-- <a href="https://api.whatsapp.com/send?phone=087764424810">+62 877-6442-4810</a> --</span>
-                </div>
-            </div>`;
-const slideMenu = L.control
-        .slideMenu("", {
-          position: "topleft",
-          menuposition: "bottomleft",
-          width: "40%",
-          height: "150px",
-          icon: "fa fa-phone",
-          delay: "50",
-        })
-.addTo(map);
+    <div class="content">
+        <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Citra Hadi Saputri</div>
+        <div class="bottom">
+            <span>-- <a href="https://api.whatsapp.com/send?phone=085172432829">+62 851-7243-2829</a> --</span>
+        </div>
+        <div class="title"><img src="./Assets/img/contact.png" alt="Image" style="width: 11px; height: 11px;"> Alif Marwan Hadid</div>
+        <div class="bottom">
+            <span>-- <a href="https://api.whatsapp.com/send?phone=087764424810">+62 877-6442-4810</a> --</span>
+        </div>
+    </div>`;
+
+const slideMenu = L.control.slideMenu("", {
+    position: "topleft",
+    menuposition: "bottomleft",
+    width: getResponsiveWidth(),
+    height: "150px",
+    icon: "fa fa-phone",
+    delay: "50",
+}).addTo(map);
+
 slideMenu.setContents(left + contents);
+
+// Mengupdate lebar slideMenu saat jendela diubah ukurannya
+window.addEventListener('resize', () => {
+    updateSlideMenuWidth(slideMenu);
+});
