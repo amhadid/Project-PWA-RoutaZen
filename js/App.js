@@ -41,22 +41,6 @@ window.addEventListener("load", function() {
 });
 window.addEventListener("resize", adjustPopupPosition);
 
-//--ResetView--
-L.control.resetView({
-position: "topleft",
-title: "Reset view",
-latlng: L.latLng([-7.052, 110.439]),
-zoom: 13,
-}).addTo(map);
-
-//--fullscreen--
-map.on('enterFullscreen', function(){
-if(window.console) window.console.log('enterFullscreen');
-});
-map.on('exitFullscreen', function(){
-if(window.console) window.console.log('exitFullscreen');
-});
-
 //--Lokasi--
 L.control.locate().addTo(map);
 
@@ -462,6 +446,13 @@ const slideMenu = L.control.slideMenu("", {
 
 slideMenu.setContents(left + contents);
 
+//--ResetView--
+L.control.resetView({
+position: "topleft",
+title: "Reset view",
+latlng: L.latLng([-7.052, 110.439]),
+zoom: 13,
+}).addTo(map);
 // Mengupdate lebar slideMenu saat jendela diubah ukurannya
 window.addEventListener('resize', () => {
     updateSlideMenuWidth(slideMenu);
