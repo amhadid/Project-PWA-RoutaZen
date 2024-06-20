@@ -433,7 +433,7 @@ function getResponsiveWidth() {
     if (screenWidth <= 480) { // Mobile devices
         return "45%";
     } else if (screenWidth <= 768) { // Tablets
-        return "25%";
+        return "35%";
     } else { // Laptop/PC
         return "15%";
     }
